@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Tempo Caffè | Cafetería Ejecutiva Gourmet · Salas Ejecutivas · Música en Vivo</title>
+    <meta name="description" content="Cafetería ejecutiva gourmet en Orizaba. Salas para reuniones, música en vivo con piano, café de especialidad y ambiente elegante. Encuentros con propósito.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: #1E1E1E; color: #F5F0E8; }
+        h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
+        .menu-cat-btn.active { background-color: #C5A028; color: #1E1E1E; }
+        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+        .nav-bg { background-color: #1E1E1E; box-shadow: 0 2px 15px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(197,160,40,0.2); }
+        .hero-logo { max-width: 70%; margin: 0 auto; }
+        @media (min-width: 768px) { .hero-logo { max-width: 40%; } }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url('https://i.postimg.cc/kG21kKjS/hero.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .badge-gold {
+            background-color: #C5A028;
+            color: #1E1E1E;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            display: inline-block;
+            font-weight: 600;
+        }
+        .bg-dark { background-color: #1E1E1E; }
+        .bg-dark-light { background-color: #2A2A2A; }
+        .border-gold { border-color: #C5A028; }
+        .text-gold { color: #C5A028; }
+        .btn-gold {
+            background-color: #C5A028;
+            color: #1E1E1E;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            background-color: #D4B345;
+            transform: translateY(-2px);
+        }
+        .btn-outline-gold {
+            border: 2px solid #C5A028;
+            color: #C5A028;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-gold:hover {
+            background-color: #C5A028;
+            color: #1E1E1E;
+        }
+        .imagen-click {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 0.75rem;
+        }
+        .imagen-click:hover { transform: scale(1.02); }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            animation: zoomIn 0.3s ease;
+            cursor: default;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1001;
+        }
+        .lightbox-close:hover { color: #C5A028; }
+        
+        .musica-schedule {
+            background: linear-gradient(135deg, #2A2A2A 0%, #1E1E1E 100%);
+            border-left: 4px solid #C5A028;
+        }
+        .nota-menu {
+            background-color: rgba(197,160,40,0.1);
+            border-left: 4px solid #C5A028;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-dark">
+
+    <header class="fixed top-0 w-full nav-bg z-50 py-3">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div><img src="https://i.postimg.cc/L5JCrLy4/logo.jpg" alt="Il Tempo Caffè" class="h-12 w-auto"></div>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="#inicio" class="text-[#F5F0E8] hover:text-gold transition">Inicio</a></li>
+                    <li><a href="#concepto" class="text-[#F5F0E8] hover:text-gold transition">Concepto</a></li>
+                    <li><a href="#servicios" class="text-[#F5F0E8] hover:text-gold transition">Servicios</a></li>
+                    <li><a href="#menu" class="text-[#F5F0E8] hover:text-gold transition">Menú</a></li>
+                    <li><a href="#musica" class="text-[#F5F0E8] hover:text-gold transition">Música en Vivo</a></li>
+                    <li><a href="#galeria" class="text-[#F5F0E8] hover:text-gold transition">Galería</a></li>
+                    <li><a href="#ubicacion" class="text-[#F5F0E8] hover:text-gold transition">Ubicación</a></li>
+                    <li><a href="#contacto" class="text-[#F5F0E8] hover:text-gold transition">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="md:hidden text-[#F5F0E8] text-2xl" id="menuToggle"><i class="fas fa-bars"></i></button>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-dark border-t border-gold/20 py-4 px-4">
+            <ul class="flex flex-col space-y-3 text-center">
+                <li><a href="#inicio" class="text-[#F5F0E8] hover:text-gold block py-2">Inicio</a></li>
+                <li><a href="#concepto" class="text-[#F5F0E8] hover:text-gold block py-2">Concepto</a></li>
+                <li><a href="#servicios" class="text-[#F5F0E8] hover:text-gold block py-2">Servicios</a></li>
+                <li><a href="#menu" class="text-[#F5F0E8] hover:text-gold block py-2">Menú</a></li>
+                <li><a href="#musica" class="text-[#F5F0E8] hover:text-gold block py-2">Música en Vivo</a></li>
+                <li><a href="#galeria" class="text-[#F5F0E8] hover:text-gold block py-2">Galería</a></li>
+                <li><a href="#ubicacion" class="text-[#F5F0E8] hover:text-gold block py-2">Ubicación</a></li>
+                <li><a href="#contacto" class="text-[#F5F0E8] hover:text-gold block py-2">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="Ampliación">
+    </div>
+
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center text-center hero-bg bg-cover bg-center">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10 px-4 py-24">
+            <span class="badge-gold mb-6 inline-block"><i class="fab fa-whatsapp mr-2"></i> Reserva por WhatsApp</span>
+            <img src="https://i.postimg.cc/L5JCrLy4/logo.jpg" alt="Il Tempo Caffè" class="hero-logo w-full max-w-2xl mx-auto mb-6 drop-shadow-2xl">
+            <p class="text-white/90 text-xl max-w-2xl mx-auto mb-4">Cafetería Ejecutiva Gourmet</p>
+            <p class="text-gold text-lg max-w-2xl mx-auto mb-8 italic">"Encuentros con propósito"</p>
+            <div class="flex gap-4 justify-center flex-wrap mt-4">
+                <a href="#menu" class="btn-gold text-[#1E1E1E] px-8 py-3 rounded-full font-semibold transition shadow-lg">Ver Menú</a>
+                <a href="https://wa.me/522721049853?text=Hola%2C%20me%20gustaría%20hacer%20una%20reserva%20en%20Il%20Tempo%20Caffè" target="_blank" class="btn-outline-gold px-8 py-3 rounded-full font-semibold transition">WhatsApp</a>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"><i class="fas fa-chevron-down text-gold text-2xl"></i></div>
+    </section>
+
+    <section id="concepto" class="py-24 bg-dark">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-12">
+                <span class="text-gold text-sm tracking-wider uppercase">Nuestra Esencia</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white mt-2 mb-4">Encuentros con <span class="text-gold">Propósito</span></h2>
+                <div class="w-24 h-0.5 bg-gold mx-auto mb-8"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto">Donde el café se convierte en experiencia y las conversaciones encuentran su mejor escenario</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div>
+                    <p class="text-gray-300 text-lg mb-6">Il Tempo Caffè es más que una cafetería: es un espacio diseñado para encuentros que dejan huella. Nuestras salas ejecutivas ofrecen el ambiente perfecto para reuniones de trabajo, mientras que nuestro café gourmet y música en vivo crean momentos inolvidables.</p>
+                    <p class="text-gray-400 mb-6">Con una decoración elegante, asientos cómodos y un servicio cálido, cada visita se convierte en una pausa significativa. El piano en vivo los fines de semana pone la banda sonora a tus mejores conversaciones.</p>
+                    <div class="flex flex-wrap gap-4 mt-6">
+                        <div class="flex items-center gap-2 bg-dark-light px-4 py-2 rounded-full border border-gold/30"><i class="fas fa-chalkboard-user text-gold text-xl"></i><span>Salas Ejecutivas</span></div>
+                        <div class="flex items-center gap-2 bg-dark-light px-4 py-2 rounded-full border border-gold/30"><i class="fas fa-music text-gold text-xl"></i><span>Música en Vivo</span></div>
+                        <div class="flex items-center gap-2 bg-dark-light px-4 py-2 rounded-full border border-gold/30"><i class="fas fa-mug-hot text-gold text-xl"></i><span>Café Gourmet</span></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://i.postimg.cc/TYJybF2r/sala3.jpg" class="imagen-click w-full h-48 object-cover rounded-xl shadow-2xl border border-gold/30" onclick="openLightbox(this.src)">
+                        <img src="https://i.postimg.cc/X7kZ5mNK/sala4.jpg" class="imagen-click w-full h-48 object-cover rounded-xl shadow-2xl border border-gold/30" onclick="openLightbox(this.src)">
+                        <img src="https://i.postimg.cc/NfkyXSG4/sala5.jpg" class="imagen-click w-full h-48 object-cover rounded-xl shadow-2xl border border-gold/30" onclick="openLightbox(this.src)">
+                        <img src="https://i.postimg.cc/c4BK321B/sala6.jpg" class="imagen-click w-full h-48 object-cover rounded-xl shadow-2xl border border-gold/30" onclick="openLightbox(this.src)">
+                        <img src="https://i.postimg.cc/pXJ9j4VY/sala7.jpg" class="imagen-click w-full h-48 object-cover rounded-xl shadow-2xl border border-gold/30 col-span-2" onclick="openLightbox(this.src)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-24 bg-dark-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-gold text-sm tracking-wider uppercase">Servicios</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white mt-2 mb-4">Espacios con <span class="text-gold">Propósito</span></h2>
+                <div class="w-24 h-0.5 bg-gold mx-auto mb-8"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-dark p-6 rounded-xl border border-gold/20 text-center">
+                    <i class="fas fa-building text-gold text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Salas Ejecutivas</h3>
+                    <p class="text-gray-400">Espacios equipados para reuniones, capacitaciones y exposiciones. Pantalla de proyección y escenario disponibles.</p>
+                </div>
+                <div class="bg-dark p-6 rounded-xl border border-gold/20 text-center">
+                    <i class="fas fa-mug-hot text-gold text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Café Gourmet</h3>
+                    <p class="text-gray-400">Café de especialidad, frappés, americanos, moka y una selección única de bebidas calientes y frías.</p>
+                </div>
+                <div class="bg-dark p-6 rounded-xl border border-gold/20 text-center">
+                    <i class="fas fa-music text-gold text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Música en Vivo</h3>
+                    <p class="text-gray-400">Piano en vivo viernes, sábado y domingo de 7:30 a 9:30 pm. El soundtrack perfecto para tus noches.</p>
+                </div>
+                <div class="bg-dark p-6 rounded-xl border border-gold/20 text-center">
+                    <i class="fas fa-microphone-alt text-gold text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Karaoke</h3>
+                    <p class="text-gray-400">Diviértete con amigos en nuestras noches de karaoke. El escenario está listo para ti.</p>
+                </div>
+                <div class="bg-dark p-6 rounded-xl border border-gold/20 text-center">
+                    <i class="fas fa-champagne-glasses text-gold text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Bar</h3>
+                    <p class="text-gray-400">Selección de bebidas, cocteles y vinos para acompañar tu visita.</p>
+                </div>
+                <div class="bg-dark p-6 rounded-xl border border-gold/20 text-center">
+                    <i class="fas fa-calendar-alt text-gold text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Eventos Privados</h3>
+                    <p class="text-gray-400">Celebraciones, reuniones familiares y eventos corporativos en un ambiente exclusivo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-24 bg-dark">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-gold text-sm tracking-wider uppercase">Sabores</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white mt-2 mb-4">Nuestro <span class="text-gold">Menú</span></h2>
+                <div class="w-24 h-0.5 bg-gold mx-auto mb-8"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto">Café de especialidad, postres artesanales y platillos que enamoran</p>
+            </div>
+            
+            <div class="nota-menu mb-8">
+                <p class="text-gold text-sm font-semibold"><i class="fas fa-info-circle mr-2"></i> MENÚ DE MUESTRA</p>
+                <p class="text-gray-300 text-sm">Este es un menú de referencia para visualizar el diseño. Al contratar la página, se integrará el menú real con todos los platillos y precios auténticos de Il Tempo Caffè.</p>
+            </div>
+            
+            <div class="flex justify-center gap-3 mb-12 flex-wrap">
+                <button class="menu-cat-btn active bg-gold text-dark px-6 py-2 rounded-full transition" data-cat="cafe">Café & Bebidas</button>
+                <button class="menu-cat-btn bg-dark-light text-gray-300 px-6 py-2 rounded-full hover:bg-gold hover:text-dark transition" data-cat="platillos">Platillos</button>
+                <button class="menu-cat-btn bg-dark-light text-gray-300 px-6 py-2 rounded-full hover:bg-gold hover:text-dark transition" data-cat="postres">Postres</button>
+            </div>
+            <div id="menu-items-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"></div>
+        </div>
+    </section>
+
+    <section id="musica" class="py-24 bg-dark-light">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="text-center mb-12">
+                <span class="text-gold text-sm tracking-wider uppercase"><i class="fas fa-music mr-2"></i> Música en Vivo</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white mt-2 mb-4">Piano <span class="text-gold">y más</span></h2>
+                <div class="w-24 h-0.5 bg-gold mx-auto mb-8"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto">Vive noches inolvidables con el mejor ambiente musical</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <img src="https://i.postimg.cc/0jzWLDtY/piano1.jpg" class="imagen-click w-full h-80 object-cover rounded-xl shadow-2xl border border-gold/30" onclick="openLightbox(this.src)">
+                <img src="https://i.postimg.cc/nrXR6Bds/piano2.jpg" class="imagen-click w-full h-80 object-cover rounded-xl shadow-2xl border border-gold/30" onclick="openLightbox(this.src)">
+            </div>
+            <div class="musica-schedule p-8 rounded-2xl">
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div><i class="fas fa-calendar-alt text-gold text-3xl mb-2"></i><h3 class="text-white font-bold">Viernes</h3><p class="text-gray-300">7:30 – 9:30 pm</p></div>
+                    <div><i class="fas fa-calendar-alt text-gold text-3xl mb-2"></i><h3 class="text-white font-bold">Sábado</h3><p class="text-gray-300">7:30 – 9:30 pm</p></div>
+                    <div><i class="fas fa-calendar-alt text-gold text-3xl mb-2"></i><h3 class="text-white font-bold">Domingo</h3><p class="text-gray-300">7:30 – 9:30 pm</p></div>
+                </div>
+            </div>
+            <p class="text-center text-gray-400 italic mt-6">"Que cada conversación tenga fondo, que cada pausa valga la pena"</p>
+        </div>
+    </section>
+
+    <section id="galeria" class="py-24 bg-dark">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-gold text-sm tracking-wider uppercase">Galería</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white mt-2 mb-4">Espacios <span class="text-gold">Il Tempo</span></h2>
+                <div class="w-24 h-0.5 bg-gold mx-auto mb-8"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <img src="https://i.postimg.cc/3RSfSnZ3/ambiente1.jpg" class="imagen-click w-full h-64 object-cover rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                <img src="https://i.postimg.cc/C1PrPm4z/ambiente2.jpg" class="imagen-click w-full h-64 object-cover rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                <img src="https://i.postimg.cc/MTP3PdYX/ambiente3.jpg" class="imagen-click w-full h-64 object-cover rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                <img src="https://i.postimg.cc/KzqpqJ58/cafe1.jpg" class="imagen-click w-full h-64 object-cover rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                <img src="https://i.postimg.cc/cH9k9XcC/cafe2.jpg" class="imagen-click w-full h-64 object-cover rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                <img src="https://i.postimg.cc/J0s69ZTc/platillos1.jpg" class="imagen-click w-full h-64 object-cover rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                <img src="https://i.postimg.cc/HnrZfXS3/platillos2.jpg" class="imagen-click w-full h-64 object-cover rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                <img src="https://i.postimg.cc/0jzWLDtc/postre1.jpg" class="imagen-click w-full h-64 object-cover rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                <img src="https://i.postimg.cc/4yYLrV8P/postre2.jpg" class="imagen-click w-full h-64 object-cover rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                <img src="https://i.postimg.cc/Kj1qdB90/sala1.jpg" class="imagen-click w-full h-64 object-cover rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                <img src="https://i.postimg.cc/sxM6t7n6/sala2.jpg" class="imagen-click w-full h-64 object-cover rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                <img src="https://i.postimg.cc/kG21kKjS/hero.jpg" class="imagen-click w-full h-64 object-cover rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+            </div>
+        </div>
+    </section>
+
+    <section id="ubicacion" class="py-24 bg-dark-light">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <span class="text-gold text-sm tracking-wider uppercase">Visítanos</span>
+                    <h2 class="text-4xl font-serif text-white mt-2 mb-6">Encuéntranos</h2>
+                    <div class="mb-8">
+                        <h3 class="font-bold text-lg mb-2 text-gold"><i class="fas fa-map-marker-alt mr-2"></i> Ubicación</h3>
+                        <p class="text-gray-300">Sur 3 43, Centro, 94300 Orizaba, Ver., México</p>
+                    </div>
+                    <div class="mb-8">
+                        <h3 class="font-bold text-lg mb-2 text-gold"><i class="fas fa-clock mr-2"></i> Horario</h3>
+                        <ul class="space-y-1 text-gray-300">
+                            <li><span class="font-medium">Domingo:</span> 11:00 – 21:30</li>
+                            <li><span class="font-medium">Lunes a Miércoles:</span> 13:00 – 21:00</li>
+                            <li><span class="font-medium">Jueves:</span> 13:00 – 21:30</li>
+                            <li><span class="font-medium">Viernes:</span> 11:00 – 22:00</li>
+                            <li><span class="font-medium">Sábado:</span> 11:00 – 22:30</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2 text-gold"><i class="fab fa-whatsapp mr-2"></i> Contacto</h3>
+                        <a href="https://wa.me/522721049853?text=Hola%2C%20me%20gustaría%20hacer%20una%20reserva%20en%20Il%20Tempo%20Caffè" target="_blank" class="block text-gray-300 hover:text-gold transition"><i class="fab fa-whatsapp mr-2 text-gold"></i> +52 272 104 9853</a>
+                        <a href="mailto:info@iltempocaffe.mx" class="block text-gray-300 hover:text-gold transition mt-1"><i class="fas fa-envelope mr-2 text-gold"></i> info@iltempocaffe.mx</a>
+                    </div>
+                </div>
+                <div class="h-96 rounded-2xl overflow-hidden shadow-xl border border-gold/30">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.123456789012!2d-97.1097041!3d18.8469216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c5036d75830d67%3A0xa9d67eba91806e0b!2sIl%20Tempo%20Caff%C3%A8!5e0!3m2!1ses!2smx!4v1641234567890!5m2!1ses!2smx" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-24 bg-dark">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-12">
+                <span class="text-gold text-sm tracking-wider uppercase">Reservaciones</span>
+                <h2 class="text-4xl font-serif text-white mt-2 mb-4">Reserva tu <span class="text-gold">Mesa o Sala</span></h2>
+                <p class="text-gray-300">Déjanos tus datos y te confirmaremos tu reserva en Il Tempo Caffè</p>
+            </div>
+            <form id="reservaForm" class="bg-dark-light p-8 rounded-2xl shadow-xl border border-gold/30">
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <input type="text" placeholder="Nombre completo" class="w-full p-3 bg-dark border border-gold/30 rounded-lg focus:border-gold text-white" required>
+                    <input type="tel" placeholder="Teléfono" class="w-full p-3 bg-dark border border-gold/30 rounded-lg focus:border-gold text-white" required>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <input type="email" placeholder="Correo electrónico" class="w-full p-3 bg-dark border border-gold/30 rounded-lg focus:border-gold text-white">
+                    <input type="date" class="w-full p-3 bg-dark border border-gold/30 rounded-lg focus:border-gold text-white" required>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <select class="w-full p-3 bg-dark border border-gold/30 rounded-lg focus:border-gold text-white">
+                        <option>1-2 personas</option><option>3-4 personas</option><option>5-6 personas</option><option>7+ personas</option>
+                    </select>
+                    <select class="w-full p-3 bg-dark border border-gold/30 rounded-lg focus:border-gold text-white">
+                        <option>Mesa en Cafetería</option><option>Sala Ejecutiva</option><option>Evento Privado</option>
+                    </select>
+                </div>
+                <textarea placeholder="Comentarios o solicitudes especiales" class="w-full p-3 bg-dark border border-gold/30 rounded-lg focus:border-gold text-white h-24 mb-4"></textarea>
+                <button type="submit" class="w-full btn-gold text-dark py-3 rounded-lg font-semibold transition">Solicitar Reserva</button>
+            </form>
+            <div class="text-center mt-8">
+                <p class="text-gray-400">O contáctanos directamente:</p>
+                <div class="flex justify-center gap-6 mt-4">
+                    <a href="https://www.facebook.com/iltempocaffe" target="_blank" class="bg-dark hover:bg-gold hover:text-dark p-3 rounded-full transition text-gold border border-gold/30"><i class="fab fa-facebook-f text-xl"></i></a>
+                    <a href="https://www.instagram.com/iltempocaffe" target="_blank" class="bg-dark hover:bg-gold hover:text-dark p-3 rounded-full transition text-gold border border-gold/30"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="https://wa.me/522721049853?text=Hola%2C%20me%20gustaría%20hacer%20una%20reserva%20en%20Il%20Tempo%20Caffè" target="_blank" class="bg-dark hover:bg-gold hover:text-dark p-3 rounded-full transition text-gold border border-gold/30"><i class="fab fa-whatsapp text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark-light text-white py-12 border-t border-gold/20">
+        <div class="container mx-auto px-4 text-center">
+            <img src="https://i.postimg.cc/L5JCrLy4/logo.jpg" alt="Il Tempo Caffè" class="h-12 w-auto mx-auto mb-4 opacity-90">
+            <p class="text-gray-400 text-sm mb-6">Cafetería Ejecutiva Gourmet | Encuentros con propósito</p>
+            <div class="flex justify-center gap-6 mb-6">
+                <a href="#inicio" class="text-gray-400 hover:text-gold text-sm">Inicio</a>
+                <a href="#concepto" class="text-gray-400 hover:text-gold text-sm">Concepto</a>
+                <a href="#servicios" class="text-gray-400 hover:text-gold text-sm">Servicios</a>
+                <a href="#menu" class="text-gray-400 hover:text-gold text-sm">Menú</a>
+                <a href="#musica" class="text-gray-400 hover:text-gold text-sm">Música</a>
+                <a href="#contacto" class="text-gray-400 hover:text-gold text-sm">Contacto</a>
+            </div>
+            <p class="text-gray-500 text-xs">&copy; 2025 Il Tempo Caffè | Sur 3 43, Centro, Orizaba | WhatsApp: +52 272 104 9853</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/522721049853?text=Hola%2C%20me%20gustaría%20hacer%20una%20reserva%20en%20Il%20Tempo%20Caffè" class="fixed bottom-6 right-6 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700 transition z-50" target="_blank">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if(menuToggle) menuToggle.addEventListener('click',()=>mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('#mobileMenu a').forEach(l=>l.addEventListener('click',()=>mobileMenu.classList.add('hidden')));
+
+        const menuData = {
+            cafe: [
+                { name:"Americano", description:"Café 100% arábica, preparación clásica", price:"$35" },
+                { name:"Espresso", description:"Intenso y concentrado", price:"$30" },
+                { name:"Cappuccino", description:"Espresso, leche vaporizada, espuma cremosa", price:"$48" },
+                { name:"Latte", description:"Espresso con leche cremosa", price:"$48" },
+                { name:"Moka", description:"Espresso, chocolate, leche vaporizada", price:"$55" },
+                { name:"Frappé de Marzipán", description:"Nuestra especialidad, cremoso y único", price:"$65" },
+                { name:"Frappé Clásico", description:"Hielo triturado, café, leche", price:"$55" },
+                { name:"Té de Hierbas", description:"Selección de tés aromáticos", price:"$35" }
+            ],
+            platillos: [
+                { name:"Tacos de Arrachera", description:"Tres tacos con arrachera a la parrilla, salsa y guacamole", price:"$120" },
+                { name:"Crepas Saladas", description:"Rellenas de pollo, champiñones o espinacas", price:"$95" },
+                { name:"Ensalada César", description:"Pollo, queso parmesano, crutones, aderezo César", price:"$85" },
+                { name:"Quesadillas de Huitlacoche", description:"Tortilla de maíz azul, queso Oaxaca, huitlacoche", price:"$90" }
+            ],
+            postres: [
+                { name:"Brownie con Helado", description:"Brownie de chocolate, helado de vainilla, ralladura de chocolate", price:"$75" },
+                { name:"Crepas Dulces", description:"A elegir cajeta y nuez, crema de avellanas o chocolate", price:"$85" },
+                { name:"Cheesecake", description:"Frutas del bosque o caramelo", price:"$65" },
+                { name:"Pastel de Chocolate", description:"Húmedo, con ganache de chocolate", price:"$60" }
+            ]
+        };
+
+        function renderMenu(category){
+            const container=document.getElementById('menu-items-container');
+            const items=menuData[category];
+            if(!container||!items)return;
+            container.innerHTML=items.map(i=>`<div class="bg-dark-light p-6 rounded-2xl shadow-md hover:shadow-xl transition border border-gold/30 card-hover"><h3 class="text-xl font-bold text-gold mb-2">${i.name}</h3><p class="text-gray-400 text-sm mb-3">${i.description||"—"}</p><p class="text-white font-bold text-xl">${i.price}</p></div>`).join('');
+        }
+        document.querySelectorAll('.menu-cat-btn').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.menu-cat-btn').forEach(btn=>{btn.classList.remove('active','bg-gold','text-dark');btn.classList.add('bg-dark-light','text-gray-300');});b.classList.add('active','bg-gold','text-dark');b.classList.remove('bg-dark-light','text-gray-300');renderMenu(b.dataset.cat);});});
+        renderMenu('cafe');
+
+        document.getElementById('reservaForm')?.addEventListener('submit',e=>{e.preventDefault();alert('¡Gracias por tu reserva! En breve nos comunicaremos para confirmar. ¡Te esperamos en Il Tempo Caffè!');e.target.reset();});
+    </script>
+</body>
+</html>
